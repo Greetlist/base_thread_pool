@@ -1,7 +1,5 @@
 #include "thread_pool.h"
 
-#include <stdio.h>
-
 static void* workerFunction(void* args) {
 	struct ThreadPool* pool = (struct ThreadPool*) args;
 	while (1) {
@@ -38,8 +36,8 @@ extern struct ThreadPool* newThreadPool(size_t size) {
 extern void addTaskToThreadPool(struct ThreadPool* pool, struct Task* task) {
 	ADD_TASK_STATUS status;
 	if ((status = addTask(pool->queue, task)) != ADD_TASK_SUCCESS) {
-		printf("The error code is : %d.\n", status);
-		return;
+		return status;
 	}
 	pthread_cond_signal(&pool->condition);
+	return status;
 }

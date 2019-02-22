@@ -18,7 +18,10 @@ int main(int argc, char** argv) {
 			printf("New Task Error.\n");
 			continue;
 		}
-		addTaskToThreadPool(pool, task);
+		ADD_TASK_STATUS status;
+		if ((status = addTaskToThreadPool(pool, task)) != ADD_TASK_SUCCESS) {
+			printf("The error code is : %d.\n", status);
+		}
 	}
 	while (1) {}
 	return 0;

@@ -21,7 +21,7 @@ static void* workerFunction();
 
 extern struct ThreadPool* newThreadPool(size_t size);
 
-extern void addTaskToThreadPool(struct ThreadPool* pool, struct Task* task);
+extern ADD_TASK_STATUS addTaskToThreadPool(struct ThreadPool* pool, struct Task* task);
 
 
 #ifdef  __cplusplus
